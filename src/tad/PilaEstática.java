@@ -1,21 +1,21 @@
 package tad;
 
-public class PilaEstática implements PilaDeObjetos{
-	protected Object pila[];
+public class PilaEstática<T> implements PilaDeObjetos<T>{
+	protected T pila[];
 
 	public PilaEstática() {
-		pila=new Object[0];
+		pila=(T[]) new Object[0];
 	}
 	
 	@Override
-	public boolean push(Object o) {
-		Object nuevo[]=new Object[pila.length+1];
+	public boolean push(T o) {
+		T nuevo[]=(T[]) new Object[pila.length+1];
 		for(int i=0;i<pila.length;i++) {
 			nuevo[i]=pila[i];
 		}
 		pila=nuevo;
 		pila[pila.length-1]=o;
-		return false;
+		return true;
 	}
 
 	@Override
@@ -27,10 +27,10 @@ public class PilaEstática implements PilaDeObjetos{
 	}
 
 	@Override
-	public Object pop() {
+	public T pop() {
 		if(pila.length>0) {
-			Object res;
-			Object nuevo[]=new Object[pila.length-1];
+			T res;
+			T nuevo[]=(T[]) new Object[pila.length-1];
 			for(int i=0;i<nuevo.length;i++) {
 				nuevo[i]=pila[i];
 			}

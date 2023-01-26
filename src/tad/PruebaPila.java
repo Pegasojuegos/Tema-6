@@ -3,9 +3,9 @@ package tad;
 public class PruebaPila {
 
 	public static void main(String[] args) {
-		PilaDeObjetos pila=new PilaEstática();
-		for(int i=1;i<=10;i++) {
-			pila.push(i);
+		PilaDeObjetos<Character> pila=new PilaEstática<Character>();
+		for(int i=0;i<=30;i++) {
+			pila.push((char)(' '+i));
 		}
 		while(!pila.isEmpty()) {
 			System.out.println(pila.pop());
