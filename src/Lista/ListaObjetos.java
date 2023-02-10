@@ -6,4 +6,5 @@ public interface ListaObjetos<T> {
 	public T get(int index);
 	public boolean remove(int index);
 	public boolean isEmpty();
+	public boolean set(int index,T obj);
 }

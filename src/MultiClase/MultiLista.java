@@ -1,18 +1,22 @@
-package Lista;
+package MultiClase;
 
-public class ListaObjetosE<T> implements ListaObjetos<T> {
+import FIFO.ColaObjetos;
+import Lista.ListaObjetos;
+import tad.PilaDeObjetos;
+
+public class MultiLista<T> implements ListaObjetos<T>,PilaDeObjetos<T>,ColaObjetos<T>{
 	protected T lista[];
 	protected int fin;
 
-	public ListaObjetosE(int tamaño) {
+	public MultiLista(int tamaño) {
 		lista=(T[]) new Object[tamaño];
-		fin=0;
+		fin=-1;
 	}
 	
 	@Override
 	public boolean add(T obj) {
 		if(fin<lista.length) {
-			lista[fin]=obj;
+			lista[fin+1]=obj;
 			fin++;
 			return true;
 		}else
@@ -40,7 +44,7 @@ public class ListaObjetosE<T> implements ListaObjetos<T> {
 	@Override
 	public boolean remove(int index) {
 		if(!isEmpty()) {
-			for(int i=index;i<=fin;i++) {
+			for(int i=index;i<fin;i++) {
 				lista[i]=lista[i+1];
 			}
 			lista[fin]=null;
@@ -61,5 +65,33 @@ public class ListaObjetosE<T> implements ListaObjetos<T> {
 			lista[index]=obj;
 		}
 		return true;
+	}
+
+	@Override
+	public T remove() {
+		T res=lista[0];
+		remove(0);
+		return res;
+	}
+
+	@Override
+	public boolean push(T o) {
+		lista[fin+1]=o;
+		fin++;
+		return false;
+	}
+
+	@Override
+	public T pop() {
+		T res=lista[fin];
+		lista[fin]=null;
+		fin--;
+		return res;
+	}
+	
+	public String toString() {
+		StringBuilder res=new StringBuilder();
+		for(int i=0;i<fin;i++)res.append("|"+lista[i]+"|");
+		return res.toString();
 	}
 }
